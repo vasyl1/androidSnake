@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author vasyl
- *
- */
-package lufish;
