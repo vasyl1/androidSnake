@@ -20,39 +20,28 @@ import framework.FileIO;
  *
  */
 public class AndroidFileIO implements FileIO {
-	Context context; // application environment
-	AssetManager assets; // access to files
-	String internalStoragePath;
-	/**
-	 * Constructor for AndroidFileIO
-	 * @param context application environment
-	 */
-	public AndroidFileIO(Context context) {
-		this.context = context;
-		this.assets = context.getAssets();
-		// path to the storage directoty
-		this.internalStoragePath = Environment.getDataDirectory().getAbsolutePath() +File.separator;
-	}
+	AssetManager assets;
+    String externalStoragePath;
 
-	@Override
-	public InputStream readAsset(String fileName) throws IOException {
-		// TODO Auto-generated method stub
-		return assets.open(fileName);
-	}
+    public AndroidFileIO(AssetManager assets) {
+        this.assets = assets;
+        this.externalStoragePath = Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + File.separator;
+    }
 
-	@Override
-	public InputStream readFile(String fileName) throws IOException {
-		// TODO Auto-generated method stub
-		return new FileInputStream(internalStoragePath + fileName);
-	}
+    @Override
+    public InputStream readAsset(String fileName) throws IOException {
+        return assets.open(fileName);
+    }
 
-	@Override
-	public OutputStream writeFile(String fileName) throws IOException {
-		// TODO Auto-generated method stub
-		return new FileOutputStream(internalStoragePath + fileName);
-	}
-	public SharedPreferences getPreferences() {
-		return PreferenceManager.getDefaultSharedPreferences(context);
-	}
+    @Override
+    public InputStream readFile(String fileName) throws IOException {
+        return new FileInputStream(externalStoragePath + fileName);
+    }
 
+    @Override
+    public OutputStream writeFile(String fileName) throws IOException {
+        return new FileOutputStream(externalStoragePath + fileName);
+    }
+	
 }

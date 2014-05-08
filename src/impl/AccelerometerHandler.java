@@ -25,13 +25,29 @@ public class AccelerometerHandler implements SensorEventListener {
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
-	public void onSensorChanged(SensorEvent arg0) {
+	public void onSensorChanged(SensorEvent event) {
 		// TODO Auto-generated method stub
+		 accelX = event.values[0];
+	     accelY = event.values[1];
+	     accelZ = event.values[2];
 
 	}
+	
+	public float getAccelX() {
+        return accelX;
+    }
+
+    public float getAccelY() {
+        return accelY;
+    }
+
+    public float getAccelZ() {
+        return accelZ;
+    }
 
 }
