@@ -22,7 +22,7 @@ public class AndroidSound implements Sound {
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		soundPool.unload(soundID);
+		soundPool.unload(soundId);
 
 	}
 
