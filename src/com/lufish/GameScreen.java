@@ -62,10 +62,10 @@ public class GameScreen extends Screen {
             }
             if(event.type == TouchEvent.TOUCH_DOWN) {
                 if(event.x < 64 && event.y > 416) {
-                    world.snake.turnLeft();
+                    world.fish.turnLeft();
                 }
                 if(event.x > 256 && event.y > 416) {
-                    world.snake.turnRight();
+                    world.fish.turnRight();
                 }
             }
         }
@@ -144,8 +144,8 @@ public class GameScreen extends Screen {
     
     private void drawWorld(World world) {
         Graphics g = game.getGraphics();
-        Snake snake = world.snake;
-        SnakePart head = snake.parts.get(0);
+        Fish fish = world.fish;
+        FishPart head = fish.parts.get(0);
         Stain stain = world.stain;
         
         
@@ -160,22 +160,22 @@ public class GameScreen extends Screen {
         int y = stain.y * 32;      
         g.drawPixmap(stainPixmap, x, y);             
         
-        int len = snake.parts.size();
+        int len = fish.parts.size();
         for(int i = 1; i < len; i++) {
-            SnakePart part = snake.parts.get(i);
+            FishPart part = fish.parts.get(i);
             x = part.x * 32;
             y = part.y * 32;
             g.drawPixmap(Assets.tail, x, y);
         }
         
         Pixmap headPixmap = null;
-        if(snake.direction == Snake.UP) 
+        if(fish.direction == Fish.UP) 
             headPixmap = Assets.headUp;
-        if(snake.direction == Snake.LEFT) 
+        if(fish.direction == Fish.LEFT) 
             headPixmap = Assets.headLeft;
-        if(snake.direction == Snake.DOWN) 
+        if(fish.direction == Fish.DOWN) 
             headPixmap = Assets.headDown;
-        if(snake.direction == Snake.RIGHT) 
+        if(fish.direction == Fish.RIGHT) 
             headPixmap = Assets.headRight;        
         x = head.x * 32 + 16;
         y = head.y * 32 + 16;

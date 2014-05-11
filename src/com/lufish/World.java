@@ -9,7 +9,7 @@ public class World {
     static final float TICK_INITIAL = 0.5f;
     static final float TICK_DECREMENT = 0.05f;
 
-    public Snake snake;
+    public Fish fish;
     public Stain stain;
     public boolean gameOver = false;;
     public int score = 0;
@@ -20,7 +20,7 @@ public class World {
     static float tick = TICK_INITIAL;
 
     public World() {
-        snake = new Snake();
+        fish = new Fish();
         placeStain();
     }
 
@@ -31,9 +31,9 @@ public class World {
             }
         }
 
-        int len = snake.parts.size();
+        int len = fish.parts.size();
         for (int i = 0; i < len; i++) {
-            SnakePart part = snake.parts.get(i);
+            FishPart part = fish.parts.get(i);
             fields[part.x][part.y] = true;
         }
 
@@ -62,17 +62,17 @@ public class World {
 
         while (tickTime > tick) {
             tickTime -= tick;
-            snake.advance();
-            if (snake.checkBitten()) {
+            fish.advance();
+            if (fish.checkBitten()) {
                 gameOver = true;
                 return;
             }
 
-            SnakePart head = snake.parts.get(0);
+            FishPart head = fish.parts.get(0);
             if (head.x == stain.x && head.y == stain.y) {
                 score += SCORE_INCREMENT;
-                snake.eat();
-                if (snake.parts.size() == WORLD_WIDTH * WORLD_HEIGHT) {
+                fish.eat();
+                if (fish.parts.size() == WORLD_WIDTH * WORLD_HEIGHT) {
                     gameOver = true;
                     return;
                 } else {

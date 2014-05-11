@@ -3,20 +3,20 @@ package com.lufish;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Snake {
+public class Fish {
     public static final int UP = 0;
     public static final int LEFT = 1;
     public static final int DOWN = 2;
     public static final int RIGHT = 3;
     
-    public List<SnakePart> parts = new ArrayList<SnakePart>();
+    public List<FishPart> parts = new ArrayList<FishPart>();
     public int direction;    
     
-    public Snake() {        
+    public Fish() {        
         direction = UP;
-        parts.add(new SnakePart(5, 6));
-        parts.add(new SnakePart(5, 7));
-        parts.add(new SnakePart(5, 8));
+        parts.add(new FishPart(5, 6));
+        parts.add(new FishPart(5, 7));
+        parts.add(new FishPart(5, 8));
     }
     
     public void turnLeft() {
@@ -32,17 +32,17 @@ public class Snake {
     }
     
     public void eat() {
-        SnakePart end = parts.get(parts.size()-1); 
-        parts.add(new SnakePart(end.x, end.y));
+        FishPart end = parts.get(parts.size()-1); 
+        parts.add(new FishPart(end.x, end.y));
     }
     
     public void advance() {
-        SnakePart head = parts.get(0);               
+        FishPart head = parts.get(0);               
         
         int len = parts.size() - 1;
         for(int i = len; i > 0; i--) {
-            SnakePart before = parts.get(i-1);
-            SnakePart part = parts.get(i);
+            FishPart before = parts.get(i-1);
+            FishPart part = parts.get(i);
             part.x = before.x;
             part.y = before.y;
         }
@@ -68,9 +68,9 @@ public class Snake {
     
     public boolean checkBitten() {
         int len = parts.size();
-        SnakePart head = parts.get(0);
+        FishPart head = parts.get(0);
         for(int i = 1; i < len; i++) {
-            SnakePart part = parts.get(i);
+            FishPart part = parts.get(i);
             if(part.x == head.x && part.y == head.y)
                 return true;
         }        
